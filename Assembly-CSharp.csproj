@@ -63,7 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerController\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Tiles\UnbreakableTile.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Tiles\Tile.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Gerald/Desktop/Spelunk King/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
