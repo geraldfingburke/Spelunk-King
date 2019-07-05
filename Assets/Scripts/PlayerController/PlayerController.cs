@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public enum Facing
 {
@@ -14,11 +15,15 @@ public enum Facing
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Health")]
+    [Range(10, 100)]
     public float health;
     [Header("Damage Player Does")]
+    [Range(10, 100)]
     public float damage;
     [Header("Speed at Which Player Moves")]
+    [Range(1, 30)]
     public float moveSpeed;
+    [Header("How high the player can jump")]
     public float jumpHeight;
     public float fallMultiplier;
     public float lowJumpMultiplier;
@@ -157,7 +162,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown(button))
         {
-            Shoot();
+            InvokeRepeating("Shoot", 0f, (1 / fireRate));
+        }
+
+        if (Input.GetButtonUp(button))
+        {
+            CancelInvoke("Shoot");
         }
     }
 
@@ -168,19 +178,19 @@ public class PlayerController : MonoBehaviour
         {
             case (Facing.Right):
                 Projectile projR = Instantiate(projectile, transform.position + new Vector3(0.5f, 0), Quaternion.identity);
-                projR.GetComponent<Rigidbody2D>().AddForce(Vector2.right * projectileSpeed);
+                projR.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (projectileSpeed + moveSpeed));
                 break;
             case (Facing.Left):
                 Projectile projL = Instantiate(projectile, transform.position + new Vector3(-0.5f, 0), Quaternion.identity);
-                projL.GetComponent<Rigidbody2D>().AddForce(Vector2.left * projectileSpeed);
+                projL.GetComponent<Rigidbody2D>().AddForce(Vector2.left * (projectileSpeed + moveSpeed));
                 break;
             case (Facing.Up):
                 Projectile projUp = Instantiate(projectile, transform.position + Vector3.up, Quaternion.identity);
-                projUp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * projectileSpeed);
+                projUp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * (projectileSpeed + moveSpeed));
                 break;
             case (Facing.Down):
                 Projectile projDown = Instantiate(projectile, transform.position + Vector3.down, Quaternion.identity);
-                projDown.GetComponent<Rigidbody2D>().AddForce(Vector2.down * projectileSpeed);
+                projDown.GetComponent<Rigidbody2D>().AddForce(Vector2.down * (projectileSpeed + moveSpeed));
                 break;
         }
     }

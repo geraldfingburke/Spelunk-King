@@ -53008,7 +53008,7 @@ MonoBehaviour:
   jumpHeight: 375
   fallMultiplier: 6
   lowJumpMultiplier: 4
-  fireRate: 4
+  fireRate: 5
   slide: 2
   playerNumber: 1
   isAI: 0
