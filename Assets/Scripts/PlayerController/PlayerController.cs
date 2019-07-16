@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
         switch (playerNumber)
         {
             case 1:
@@ -283,5 +287,10 @@ public class PlayerController : MonoBehaviour
     public IEnumerator AIRoutine()
     {
         return null;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }

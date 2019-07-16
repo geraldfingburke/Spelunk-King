@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private int damage;
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        
+        switch(col.tag)
+        {
+            case "Breakable":
+                break;
+            case "Unbreakable":
+                break;
+            case "Player":
+                col.GetComponent<PlayerController>().TakeDamage(damage);
+                break;
+        }
+        Destroy(gameObject);
     }
 }
