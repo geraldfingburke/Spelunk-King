@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2337813390645147627}
   - component: {fileID: 6976641030658150978}
   - component: {fileID: -2566278620918181660}
+  - component: {fileID: -2377153514610225149}
   m_Layer: 0
   m_Name: Lavafall
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: 7477116942032994148, guid: fffe38d9f88746f4b955549025546a9a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -128,7 +129,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -144,3 +145,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2377153514610225149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337813390645147626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c5dce517d953c4dbdf62ac66b76abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lava: {fileID: 2337813390645147626}
+  particles: {fileID: 1441359964560786, guid: 1f89c0b305281fd4da31808ed178bb3e, type: 3}

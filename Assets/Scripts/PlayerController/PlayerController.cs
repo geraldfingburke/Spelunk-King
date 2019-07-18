@@ -14,32 +14,54 @@ public enum Facing
 
 public class PlayerController : MonoBehaviour
 {
+    #region Player Properties
+    [SerializeField]
     [Header("Player Health")]
     [Range(10, 100)]
-    public float health;
+    private float health;
+    [SerializeField]
     [Header("Damage Player Does")]
     [Range(10, 100)]
-    public float damage;
+    private float damage;
+    [SerializeField]
     [Header("Speed at Which Player Moves")]
     [Range(1, 30)]
-    public float moveSpeed;
+    private float moveSpeed;
+    [SerializeField]
     [Header("How high the player can jump")]
-    public float jumpHeight;
-    public float fallMultiplier;
-    public float lowJumpMultiplier;
-    public float fireRate;
-    public float slide;
-    public int playerNumber;
-    public bool isAI;
-    public Projectile projectile;
-    public float projectileSpeed;
-    public Facing facing;
+    private float jumpHeight;
+    [SerializeField]
+    [Header("How fast the player falls after a jump")]
+    private float fallMultiplier;
+    [SerializeField]
+    [Header("How high the player jumps when button is pressed, rather than held")]
+    private float lowJumpMultiplier;
+    [SerializeField]
+    [Header("How fast the player shoots when the fire button is held")]
+    private float fireRate;
+    [SerializeField]
+    [Header("Player slide while moving vertically")]
+    private float slide;
+    [SerializeField]
+    [Header("Controller slot of this player, cannot be the same as any other player")]
+    private int playerNumber;
+    [SerializeField]
+    [Header("Determines whether player is computer controlled")]
+    private bool isAI;
+    [SerializeField]
+    [Header("Projectile this player uses")]
+    private Projectile projectile;
+    [SerializeField]
+    [Header("Direction the player is currently facing")]
+    private Facing facing;
+    #endregion
 
-
+    #region Components
     private Rigidbody2D rigidbody;
-
     private Animator animator;
+    #endregion
 
+    #region Start and Update
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         switch (playerNumber)
         {
             case 1:
@@ -75,7 +98,9 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
+    #region Listeners
     public void HorizontalMoveListener(String axis)
     {
         if (Input.GetAxisRaw(axis) >= 0.5f)
@@ -135,24 +160,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isFacingUp", false);
         }
     }
-
-    public void Jump()
-    {
-        animator.SetBool("isJumping", true);
-        rigidbody.AddForce(Vector2.up * jumpHeight);
-        switch (facing)
-        {
-            case Facing.Down:
-                break;
-            case Facing.Up:
-                break;
-            case Facing.Left:
-                break;
-            case Facing.Right:
-                break;
-        }
-    }
-
     public void JumpListener(String button)
     {
         if (Input.GetButtonDown(button) && isGrounded())
@@ -174,36 +181,6 @@ public class PlayerController : MonoBehaviour
             CancelInvoke("Shoot");
         }
     }
-
-    public void Shoot()
-    {
-        animator.SetTrigger("ShootTrigger");
-        switch (facing)
-        {
-            case (Facing.Right):
-                Projectile projR = Instantiate(projectile, transform.position + new Vector3(0.5f, 0), Quaternion.identity);
-                projR.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (projectileSpeed + moveSpeed));
-                break;
-            case (Facing.Left):
-                Projectile projL = Instantiate(projectile, transform.position + new Vector3(-0.5f, 0), Quaternion.identity);
-                projL.GetComponent<Rigidbody2D>().AddForce(Vector2.left * (projectileSpeed + moveSpeed));
-                break;
-            case (Facing.Up):
-                Projectile projUp = Instantiate(projectile, transform.position + Vector3.up, Quaternion.identity);
-                projUp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * (projectileSpeed + moveSpeed));
-                break;
-            case (Facing.Down):
-                Projectile projDown = Instantiate(projectile, transform.position + Vector3.down, Quaternion.identity);
-                projDown.GetComponent<Rigidbody2D>().AddForce(Vector2.down * (projectileSpeed + moveSpeed));
-                break;
-        }
-    }
-
-    public void Taunt()
-    {
-        animator.SetTrigger("TauntTrigger");
-    }
-
     public void TauntListener(String button)
     {
         if (Input.GetButtonDown(button))
@@ -237,30 +214,71 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /**
-     * Makes the player jump longer as the button is pressed longer
-     * Also makes the player fall faster than they jump
-     */
-
-    public void JumpJuice(String button)
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        if (rigidbody.velocity.y < 0)
+        if (col.CompareTag("Lava"))
         {
-            rigidbody.velocity += Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
-        }
-
-        if (rigidbody.velocity.y > 0 && !Input.GetButton(button))
-        {
-            rigidbody.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            health = 0;
         }
     }
+    #endregion
+
+    #region Actions
+    public void Jump()
+    {
+        animator.SetBool("isJumping", true);
+        rigidbody.AddForce(Vector2.up * jumpHeight);
+        switch (facing)
+        {
+            case Facing.Down:
+                break;
+            case Facing.Up:
+                break;
+            case Facing.Left:
+                break;
+            case Facing.Right:
+                break;
+        }
+    }
+
+
+
+    public void Shoot()
+    {
+        animator.SetTrigger("ShootTrigger");
+        switch (facing)
+        {
+            case (Facing.Right):
+                Projectile projR = Instantiate(projectile, transform.position + new Vector3(0.5f, 0), Quaternion.identity);
+                projR.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (projR.GetSpeed() + moveSpeed));
+                break;
+            case (Facing.Left):
+                Projectile projL = Instantiate(projectile, transform.position + new Vector3(-0.5f, 0), Quaternion.identity);
+                projL.GetComponent<Rigidbody2D>().AddForce(Vector2.left * (projL.GetSpeed() + moveSpeed));
+                break;
+            case (Facing.Up):
+                Projectile projUp = Instantiate(projectile, transform.position + Vector3.up, Quaternion.identity);
+                projUp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * (projUp.GetSpeed() + moveSpeed));
+                break;
+            case (Facing.Down):
+                Projectile projDown = Instantiate(projectile, transform.position + Vector3.down, Quaternion.identity);
+                projDown.GetComponent<Rigidbody2D>().AddForce(Vector2.down * (projDown.GetSpeed() + moveSpeed));
+                break;
+        }
+    }
+
+    public void Taunt()
+    {
+        animator.SetTrigger("TauntTrigger");
+    }
+
     /**
-     * MoveRight and MoveLeft handle a couple of issues. One, uses
-     * rays to detect collision to stop movement. This prevents
-     * the player from getting stuck on a wall. Two, handles x-axis
-     * flipping for player sprite, simplifying facing for animations
-     * and logic.
-     */
+ * MoveRight and MoveLeft handle a couple of issues. One, uses
+ * rays to detect collision to stop movement. This prevents
+ * the player from getting stuck on a wall. Two, handles x-axis
+ * flipping for player sprite, simplifying facing for animations
+ * and logic.
+ */
     public void MoveRight()
     {
         GetComponent<SpriteRenderer>().flipX = true;
@@ -283,14 +301,45 @@ public class PlayerController : MonoBehaviour
             Debug.Log("clear");
         }
     }
+    #endregion
+
+    #region Juice
+    /**
+ * Makes the player jump longer as the button is pressed longer
+ * Also makes the player fall faster than they jump
+ */
+
+    public void JumpJuice(String button)
+    {
+        if (rigidbody.velocity.y < 0)
+        {
+            rigidbody.velocity += Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
+        }
+
+        if (rigidbody.velocity.y > 0 && !Input.GetButton(button))
+        {
+            rigidbody.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+
+
+    #endregion
+
+    #region Getters and Setters
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+    #endregion
+
+    #region AI Routines
+
     // TODO: Make the game play itself (save for last)
     public IEnumerator AIRoutine()
     {
         return null;
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-    }
+    #endregion
 }
