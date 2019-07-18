@@ -6,15 +6,19 @@ using Random = UnityEngine.Random;
 
 public class Explosive : MonoBehaviour
 {
+    #region Properties
     // Timer for automatic explosions
     private float countDown;
     // Animated object for explosion
+    [SerializeField]
     private GameObject explosion;
     [SerializeField]
     [Header("How soon after the start of the match boxes will randomly explode.")]
     [Range(11, 120)]
     private float explosionFrequency;
+    #endregion
 
+    #region Start and Update
     public void Start()
     {
         countDown = Random.Range(10, explosionFrequency);
@@ -29,6 +33,7 @@ public class Explosive : MonoBehaviour
             Explode();
         }
     }
+    #endregion
 
     public void OnTriggerEnter2D(Collider2D col)
     {
