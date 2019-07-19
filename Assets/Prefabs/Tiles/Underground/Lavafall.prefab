@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7477116942032994148, guid: fffe38d9f88746f4b955549025546a9a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -158,4 +158,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lava: {fileID: 2337813390645147626}
-  particles: {fileID: 1441359964560786, guid: 1f89c0b305281fd4da31808ed178bb3e, type: 3}
