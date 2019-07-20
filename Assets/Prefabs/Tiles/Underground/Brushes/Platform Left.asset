@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: BoxBrush
+  m_Name: Platform Left
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -35,6 +35,6 @@ MonoBehaviour:
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Prefabs:
-  - {fileID: 9081729079298377830, guid: 9d247cf8cef1d4b4fbfe2cca29b4b315, type: 3}
+  - {fileID: 7633135789376143670, guid: 7c303c24209cd7b4980da72c06359abe, type: 3}
   m_PerlinScale: 0.5
   m_Z: 0

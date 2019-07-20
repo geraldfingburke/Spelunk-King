@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: LavaFloorBrush
+  m_Name: Rock
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -35,6 +35,6 @@ MonoBehaviour:
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Prefabs:
-  - {fileID: 5130803221681725003, guid: a71dccd61281fdc478350fbd4e1e37af, type: 3}
+  - {fileID: 1549618832702668453, guid: 0459f7f5b0a15ab46bea0ab592fa5c28, type: 3}
   m_PerlinScale: 0.5
   m_Z: 0

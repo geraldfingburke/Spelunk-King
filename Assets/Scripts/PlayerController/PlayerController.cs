@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Header("Direction the player is currently facing")]
     private Facing facing;
+
+    private bool isOnLadder;
     #endregion
 
     #region Components
@@ -77,6 +80,17 @@ public class PlayerController : MonoBehaviour
         {
             LevelManager.Reload();
         }
+
+        if (isOnLadder)
+        {
+            rigidbody.gravityScale = 0;
+        }
+        else
+        {
+            rigidbody.gravityScale = 1;
+        }
+
+        CheckLadder();
 
         switch (playerNumber)
         {
@@ -152,12 +166,14 @@ public class PlayerController : MonoBehaviour
             facing = Facing.Up;
             animator.SetBool("isFacingUp", true);
             animator.SetBool("isFacingDown", false);
+            MoveUp();
         }
         else if (Input.GetAxisRaw(axis) <= -0.5f)
         {
             facing = Facing.Down;
             animator.SetBool("isFacingDown", true);
             animator.SetBool("isFacingUp", false);
+            MoveDown();
         }
     }
     public void JumpListener(String button)
@@ -211,6 +227,31 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isJumping", true);
+        }
+    }
+
+    public void CheckLadder()
+    {
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position + new Vector3(0, 0.9f), Vector2.up, 0.5f);
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.9f), Vector2.down, 0.5f);
+
+        if (hitUp.collider != null)
+        {
+            if (hitUp.collider.CompareTag("Ladder"))
+            {
+                isOnLadder = true;
+            }
+        }
+        else if (hitDown.collider != null)
+        {
+            if (hitDown.collider.CompareTag("Ladder"))
+            {
+                isOnLadder = true;
+            }
+        }
+        else
+        {
+            isOnLadder = false;
         }
     }
 
@@ -272,6 +313,22 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("TauntTrigger");
     }
 
+    public void MoveUp()
+    {
+        if (isOnLadder)
+        {
+            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+        }
+    }
+
+    public void MoveDown()
+    {
+        if (isOnLadder)
+        {
+            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        }
+    }
+
     /**
  * MoveRight and MoveLeft handle a couple of issues. One, uses
  * rays to detect collision to stop movement. This prevents
@@ -284,7 +341,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<SpriteRenderer>().flipX = true;
         facing = Facing.Right;
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0), Vector2.right, 0.05f);
-        if (hit.collider == null)
+        if (hit.collider == null || hit.collider.isTrigger)
         {
             transform.position += Vector3.right * moveSpeed * Time.deltaTime;
         }
@@ -295,7 +352,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<SpriteRenderer>().flipX = false;
         facing = Facing.Left;
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-0.5f, 0), Vector2.left, 0.05f);
-        if (hit.collider == null)
+        if (hit.collider == null || hit.collider.isTrigger)
         {
             transform.position += Vector3.left * moveSpeed * Time.deltaTime;
             Debug.Log("clear");
@@ -311,12 +368,12 @@ public class PlayerController : MonoBehaviour
 
     public void JumpJuice(String button)
     {
-        if (rigidbody.velocity.y < 0)
+        if (rigidbody.velocity.y < 0 && !isOnLadder)
         {
             rigidbody.velocity += Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
         }
 
-        if (rigidbody.velocity.y > 0 && !Input.GetButton(button))
+        if (rigidbody.velocity.y > 0 && !Input.GetButton(button) && !isOnLadder)
         {
             rigidbody.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }

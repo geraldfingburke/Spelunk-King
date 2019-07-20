@@ -9,6 +9,7 @@ TagManager:
   - Explosive
   - Lava
   - Projectile
+  - Ladder
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: LavaFallBrush
+  m_Name: Platform Middle
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -35,6 +35,6 @@ MonoBehaviour:
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Prefabs:
-  - {fileID: 2337813390645147626, guid: fd1ba2bc52024404db691da2f3fe808f, type: 3}
+  - {fileID: 1592590805225425203, guid: f246efa4c9221fe4698eb42f074cafa8, type: 3}
   m_PerlinScale: 0.5
   m_Z: 0

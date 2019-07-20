@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: TopLeftCornerBrush
+  m_Name: Top Right
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -35,6 +35,6 @@ MonoBehaviour:
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Prefabs:
-  - {fileID: 5999401532024603336, guid: 092f000f18332e841b2293a927157472, type: 3}
+  - {fileID: 5312032978136568203, guid: 5b0571583edded049b0cc3d5140e80e2, type: 3}
   m_PerlinScale: 0.5
   m_Z: 0
