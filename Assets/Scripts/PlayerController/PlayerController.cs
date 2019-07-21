@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         InvokeRepeating("CheckGround", 0.5f, 0.2f);
+        Debug.Log("Player 1: " + GameManager.player1Score + " Player 2: " + GameManager.player2Score);
     }
 
     // Update is called once per frame
@@ -78,6 +79,15 @@ public class PlayerController : MonoBehaviour
     {
         if (health <= 0)
         {
+            switch (playerNumber)
+            {
+                case 1:
+                    GameManager.player2Score++;
+                    break;
+                case 2:
+                    GameManager.player1Score++;
+                    break;
+            }
             LevelManager.Reload();
         }
 

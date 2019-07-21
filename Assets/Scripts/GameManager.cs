@@ -2,23 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public abstract class GameManager : MonoBehaviour
 {
-    public int player1Score;
-    public int player2Score;
-    public int[] scores;
+    public static int player1Score { get; set; } = 0;
+    public static int player2Score { get; set; } = 0;
     
-
-
-    // Start is called before the first frame update
-    void Start()
+    public static void ResetScores ()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        player1Score = 0;
+        player2Score = 0;
     }
 }
