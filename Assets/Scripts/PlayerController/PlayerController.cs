@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     #region Components
     private Rigidbody2D rigidbody;
     private Animator animator;
+    private PlayerController target;
     #endregion
 
     #region Start and Update
@@ -72,6 +73,11 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         InvokeRepeating("CheckGround", 0.5f, 0.2f);
         Debug.Log("Player 1: " + GameManager.player1Score + " Player 2: " + GameManager.player2Score);
+        target = FindObjectOfType<PlayerController>();
+        if (isAI)
+        {
+            StartCoroutine("AIRoutine");
+        }
     }
 
     // Update is called once per frame
@@ -405,7 +411,19 @@ public class PlayerController : MonoBehaviour
     // TODO: Make the game play itself (save for last)
     public IEnumerator AIRoutine()
     {
-        return null;
+        while (true)
+        {
+            while (target.transform.position.x > transform.position.x)
+            {
+                MoveRight();
+            }
+
+            while (target.transform.position.x < transform.position.x)
+            {
+                MoveLeft();
+            }
+        }
+
     }
 
     #endregion
