@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 {
     #region Player Properties
     [SerializeField]
+    [Header("Name used in UI")]
+    private string name;
+    [SerializeField]
     [Header("Player Health")]
     [Range(10, 100)]
     private float health;
@@ -72,6 +75,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         InvokeRepeating("CheckGround", 0.5f, 0.2f);
+        StartCoroutine("Die");
         Debug.Log("Player 1: " + GameManager.player1Score + " Player 2: " + GameManager.player2Score);
         target = FindObjectOfType<PlayerController>();
         if (isAI)
@@ -83,19 +87,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            switch (playerNumber)
-            {
-                case 1:
-                    GameManager.player2Score++;
-                    break;
-                case 2:
-                    GameManager.player1Score++;
-                    break;
-            }
-            LevelManager.Reload();
-        }
 
         if (isOnLadder)
         {
@@ -298,7 +289,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public IEnumerator Die()
+    {
+        bool roundOver = false;
+        while (health > 0)
+        {
+            yield return null;
+        }
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(1);
+        if (GameManager.player1Score < 3 && GameManager.player2Score < 3)
+        {
+            switch (playerNumber)
+            {
+                case 1:
+                    GameManager.player2Score++;
+                    break;
+                case 2:
+                    GameManager.player1Score++;
+                    break;
+            }
+        } 
+        else
+        {
+            roundOver = true;
+        }
+        if (roundOver)
+        {
+            GameManager.ResetScores();
+            yield return new WaitForEndOfFrame();
+            LevelManager.Reload();
+        }
+        else
+        {
+            LevelManager.Reload();
+        }
+    }
 
     public void Shoot()
     {
@@ -403,6 +429,16 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    public string getName ()
+    {
+        return name;
+    }
+
+    public int getPlayerNumber ()
+    {
+        return playerNumber;
     }
     #endregion
 
