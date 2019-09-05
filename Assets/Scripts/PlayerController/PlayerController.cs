@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using Random = System.Random;
 
 public enum Facing
 {
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
         InvokeRepeating("CheckGround", 0.5f, 0.2f);
         StartCoroutine("Die");
         Debug.Log("Player 1: " + GameManager.player1Score + " Player 2: " + GameManager.player2Score);
-        target = FindObjectOfType<PlayerController>();
+        target = GameManager.player1;
         if (isAI)
         {
             StartCoroutine("AIRoutine");
@@ -431,14 +433,19 @@ public class PlayerController : MonoBehaviour
         health -= damage;
     }
 
-    public string getName ()
+    public string GetName ()
     {
         return name;
     }
 
-    public int getPlayerNumber ()
+    public int GetPlayerNumber()
     {
         return playerNumber;
+    }
+
+    public void SetPlayerNumber(int playerNumber)
+    {
+        this.playerNumber = playerNumber;
     }
     #endregion
 
@@ -449,17 +456,42 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            while (target.transform.position.x > transform.position.x)
+            Debug.Log(target.transform.position.x - transform.position.x);
+            while (target.transform.position.x > transform.position.x &&
+                   target.transform.position.x - transform.position.x > 3 ||
+                   target.transform.position.y - transform.position.y > 2 &&
+                   target.transform.position.x > transform.position.x)
             {
+                Debug.Log("Should be moving right");
                 MoveRight();
+                while (isOnLadder)
+                {
+                    if (target.transform.position.y > transform.position.y)
+                    {
+                        MoveUp();
+                    }
+                    else if (target.transform.position.y < transform.position.y)
+                    {
+                        MoveDown();
+                    }
+
+                    yield return null;
+                }
+                yield return null;
             }
 
-            while (target.transform.position.x < transform.position.x)
+            while (target.transform.position.x < transform.position.x &&
+                   target.transform.position.x - transform.position.x < -3 ||
+                   target.transform.position.y - transform.position.y > 2 &&
+                   target.transform.position.x < transform.position.x)
             {
+                Debug.Log("Should be moving left");
                 MoveLeft();
+                yield return null;
             }
-        }
 
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     #endregion
