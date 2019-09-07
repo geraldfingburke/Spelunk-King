@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
         players = FindObjectsOfType<PlayerController>();
         for (int i = 0; i < players.Length; i++)
         {
-            switch (players[i].getPlayerNumber())
+            switch (players[i].GetPlayerNumber())
             {
                 case 1:
                     player1 = players[i];

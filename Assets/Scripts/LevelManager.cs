@@ -11,4 +11,9 @@ public abstract class LevelManager
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public static void Load (String scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
 }
