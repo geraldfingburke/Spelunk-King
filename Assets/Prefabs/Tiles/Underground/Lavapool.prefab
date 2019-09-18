@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5130803221681725002}
   - component: {fileID: 8407383871682749289}
   - component: {fileID: -6662942488227238506}
+  - component: {fileID: -5219351186709886439}
   m_Layer: 0
   m_Name: Lavapool
   m_TagString: Lava
@@ -144,3 +145,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5219351186709886439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5130803221681725003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c5dce517d953c4dbdf62ac66b76abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lava: {fileID: 5349189015880874860, guid: 815068eb4ca9a0549b5b41296b452955, type: 3}
+  particles: {fileID: 1256165115861186109, guid: 908da0ad61dd06a498bb7136ad38c2a6,
+    type: 3}
+  isFlowing: 0

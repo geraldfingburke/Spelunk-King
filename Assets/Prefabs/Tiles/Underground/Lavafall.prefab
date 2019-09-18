@@ -158,3 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lava: {fileID: 2337813390645147626}
+  particles: {fileID: 4735817303259456714, guid: 5c1f5439afaaba642badafdf299be86f,
+    type: 3}
+  isFlowing: 1

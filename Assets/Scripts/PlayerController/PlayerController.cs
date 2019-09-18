@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     private Facing facing;
 
     private bool isOnLadder;
+    private bool canMoveDown;
     #endregion
 
     #region Components
@@ -249,18 +250,23 @@ public class PlayerController : MonoBehaviour
             if (hitUp.collider.CompareTag("Ladder"))
             {
                 isOnLadder = true;
+                rigidbody.gravityScale = 0;
             }
         }
-        else if (hitDown.collider != null)
+        if (hitDown.collider != null)
         {
             if (hitDown.collider.CompareTag("Ladder"))
             {
                 isOnLadder = true;
+                rigidbody.gravityScale = 0;
+                canMoveDown = true;
             }
         }
         else
         {
             isOnLadder = false;
+            canMoveDown = false;
+            rigidbody.gravityScale = 1;
         }
     }
 
@@ -268,6 +274,8 @@ public class PlayerController : MonoBehaviour
     {
         if (col.CompareTag("Lava"))
         {
+            Instantiate(col.GetComponent<Lava>().particles, col.transform.position + new Vector3(0,1,0), Quaternion.Euler(-90,0,0));
+            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             health = 0;
         }
     }
@@ -367,7 +375,8 @@ public class PlayerController : MonoBehaviour
 
     public void MoveDown()
     {
-        if (isOnLadder)
+        Debug.Log(canMoveDown);
+        if (isOnLadder && canMoveDown)
         {
             transform.position += Vector3.down * moveSpeed * Time.deltaTime;
         }

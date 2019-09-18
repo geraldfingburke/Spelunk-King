@@ -5,6 +5,8 @@ using UnityEngine;
 public class Lava : MonoBehaviour
 {
     public GameObject lava;
+    public ParticleSystem particles;
+    public bool isFlowing;
 
     void Start()
     {
@@ -13,11 +15,14 @@ public class Lava : MonoBehaviour
 
     void LavaFlow()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -1f), Vector2.down, 0.05f);
-        if (hit.collider == null || hit.collider.CompareTag("Player"))
+        if (isFlowing)
         {
-            Instantiate(lava, transform.position + Vector3.down, Quaternion.identity);
-        }
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -1f), Vector2.down, 0.05f);
+            if (hit.collider == null || hit.collider.CompareTag("Player"))
+            {
+                Instantiate(lava, transform.position + Vector3.down, Quaternion.identity);
+            }
+        } 
     }
 }
 
