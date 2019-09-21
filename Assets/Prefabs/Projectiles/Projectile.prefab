@@ -96,6 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   speed: 500
+  playerClip: {fileID: 8300000, guid: 24ec53894ddbb6747a16f479f3578d13, type: 3}
+  blockClip: {fileID: 8300000, guid: 24ec53894ddbb6747a16f479f3578d13, type: 3}
 --- !u!50 &8232262836892628797
 Rigidbody2D:
   serializedVersion: 4

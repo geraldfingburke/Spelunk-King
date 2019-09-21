@@ -3625,104 +3625,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2126662548}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &344779373 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4081225702374756207, guid: 55340bb96de374c46a4d9b4c0f49b2d2,
-    type: 3}
-  m_PrefabInstance: {fileID: 5895848166863039096}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &344779376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344779373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 004047a9a4178564881cc963256ed72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Checkov
-  health: 10
-  damage: 5
-  moveSpeed: 10
-  jumpHeight: 375
-  fallMultiplier: 6
-  lowJumpMultiplier: 4
-  fireRate: 5
-  slide: 2
-  playerNumber: 2
-  isAI: 0
-  projectile: {fileID: -1025951248213513408, guid: 3a67c837bd5fe82418f769ee6d90a229,
-    type: 3}
-  facing: 0
---- !u!95 &344779377
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344779373}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f858a0ce9e791c49b3a89420998c849, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &344779378
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344779373}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.010024548, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6040001, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &344779379
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344779373}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!1001 &352044773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18642,104 +18544,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd1ba2bc52024404db691da2f3fe808f, type: 3}
---- !u!1 &1765665540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7698684166353459517, guid: 97b2a696fd0dbc04fbefe7c047fa14d7,
-    type: 3}
-  m_PrefabInstance: {fileID: 5913550587426893896}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1765665543
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765665540}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!114 &1765665544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765665540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 004047a9a4178564881cc963256ed72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Alice
-  health: 10
-  damage: 5
-  moveSpeed: 10
-  jumpHeight: 375
-  fallMultiplier: 6
-  lowJumpMultiplier: 4
-  fireRate: 5
-  slide: 2
-  playerNumber: 1
-  isAI: 0
-  projectile: {fileID: -1025951248213513408, guid: 3a67c837bd5fe82418f769ee6d90a229,
-    type: 3}
-  facing: 0
---- !u!61 &1765665545
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765665540}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.010024548, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6040001, y: 1}
-  m_EdgeRadius: 0
---- !u!95 &1765665547
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765665540}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c6d373d307325141a2920b4e0b74e6c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1769863277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22824,11 +22628,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkov
       objectReference: {fileID: 0}
-    - target: {fileID: 4081225702374756207, guid: 55340bb96de374c46a4d9b4c0f49b2d2,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 5308373371222095728, guid: 55340bb96de374c46a4d9b4c0f49b2d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22884,11 +22683,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7330858369239649719, guid: 55340bb96de374c46a4d9b4c0f49b2d2,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55340bb96de374c46a4d9b4c0f49b2d2, type: 3}
 --- !u!1001 &5913550587426893896
@@ -22902,11 +22696,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Alice
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698684166353459517, guid: 97b2a696fd0dbc04fbefe7c047fa14d7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6297901453692852661, guid: 97b2a696fd0dbc04fbefe7c047fa14d7,
         type: 3}
@@ -22962,11 +22751,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8214804761820042212, guid: 97b2a696fd0dbc04fbefe7c047fa14d7,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97b2a696fd0dbc04fbefe7c047fa14d7, type: 3}
