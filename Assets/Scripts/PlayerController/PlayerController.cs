@@ -60,21 +60,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Header("Direction the player is currently facing")]
     private Facing facing;
-    [SerializeField]
-    [Header("Plays when the player dies")]
-    private AudioClip deathClip;
-    [SerializeField]
-    [Header("Plays when hit with lava")]
-    private AudioClip lavaClip;
-    [SerializeField]
-    [Header("Plays when player jumps")]
-    private AudioClip jumpClip;
-    [SerializeField]
-    [Header("Plays when the player shoots")]
-    private AudioClip shootClip;
-    [SerializeField]
-    [Header("Plays when the player taunts")]
-    private AudioClip tauntClip;
 
     private bool isOnLadder;
     private bool canMoveDown;
@@ -291,7 +276,6 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(col.GetComponent<Lava>().particles, col.transform.position + new Vector3(0,1,0), Quaternion.Euler(-90,0,0));
             GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-            AudioSource.PlayClipAtPoint(lavaClip, transform.position);
             health = 0;
         }
     }
@@ -302,7 +286,6 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("isJumping", true);
         rigidbody.AddForce(Vector2.up * jumpHeight);
-        AudioSource.PlayClipAtPoint(jumpClip, transform.position);
         switch (facing)
         {
             case Facing.Down:
@@ -324,7 +307,6 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         animator.SetBool("isDead", true);
-        AudioSource.PlayClipAtPoint(deathClip, transform.position);
         yield return new WaitForSeconds(1);
         if (GameManager.player1Score < 3 && GameManager.player2Score < 3)
         {
@@ -357,7 +339,6 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {
         animator.SetTrigger("ShootTrigger");
-        AudioSource.PlayClipAtPoint(shootClip, transform.position);
         switch (facing)
         {
             case (Facing.Right):
@@ -382,7 +363,6 @@ public class PlayerController : MonoBehaviour
     public void Taunt()
     {
         animator.SetTrigger("TauntTrigger");
-        AudioSource.PlayClipAtPoint(tauntClip, transform.position);
     }
 
     public void MoveUp()

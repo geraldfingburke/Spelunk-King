@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/01B_Options.unity
     guid: 100690f83c6df484682dcc7b21f95a05
   - enabled: 1
+    path: Assets/_Scenes/01C_LeaderBoard.unity
+    guid: 036ad167ca3b31d4c82b710bf58783cc
+  - enabled: 1
     path: Assets/_Scenes/M02_PlayerSelect.unity
     guid: 38dab6b9bce27e6479211cf1c79ffa25
   - enabled: 1
