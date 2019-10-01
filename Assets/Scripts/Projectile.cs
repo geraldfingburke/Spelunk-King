@@ -11,6 +11,12 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     [Header("Speed at which the projectile travels")]
     private float speed;
+    [SerializeField]
+    [Header("Plays when player is hit")]
+    private AudioClip playerClip;
+    [SerializeField]
+    [Header("Plays when breakable block is hit")]
+    private AudioClip blockClip;
 
     public float GetSpeed()
     {
@@ -23,11 +29,13 @@ public class Projectile : MonoBehaviour
         {
             case "Breakable":
                 Destroy(col.gameObject);
+                AudioSource.PlayClipAtPoint(blockClip, col.transform.position);
                 break;
             case "Unbreakable":
                 break;
             case "Player":
                 col.GetComponent<PlayerController>().TakeDamage(damage);
+                AudioSource.PlayClipAtPoint(playerClip, col.transform.position);
                 break;
         }
         Destroy(gameObject);
