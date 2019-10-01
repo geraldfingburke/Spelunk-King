@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class AudioManagement : MonoBehaviour
 {
+    [SerializeField] 
+    [Header("Plays during splash screen")]
+    private AudioClip splashMusic;
     [SerializeField]
     [Header("Plays in main menu, level and character select")]
     private AudioClip menuMusic;
@@ -75,6 +78,10 @@ public class AudioManagement : MonoBehaviour
                 break;
             case "Level":
                 SelectMusicRandom();
+                StartMusic();
+                break;
+            case "Splash":
+                audioSource.clip = splashMusic;
                 StartMusic();
                 break;
         }

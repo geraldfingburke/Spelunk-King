@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Header("Plays when the player shoots")]
     private AudioClip shootClip;
-    [SerializeField]
-    [Header("Plays when the player taunts")]
+
+    [SerializeField] [Header("Plays when the player taunts")]
     private AudioClip tauntClip;
 
     private bool isOnLadder;

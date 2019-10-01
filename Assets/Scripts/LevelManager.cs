@@ -21,11 +21,14 @@ public abstract class LevelManager
     {
         switch(SceneManager.GetActiveScene().buildIndex)
         {
-            case int n when n >= 1 && n <=4:
+            case 0:
+                return "Splash";
+            case int n when n >= 1 && n <= 4:
                 return "Menu";
-            case 5:
+            case int n when n >= 5 && n <= 14:
                 return "Level";
-
+            case 15:
+                return "Credits";
             default: return "";
         }
         
