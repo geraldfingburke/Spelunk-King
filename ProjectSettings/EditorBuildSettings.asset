@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/00_Splash.unity
+    guid: 792aea438b83881409f5810829192208
+  - enabled: 1
+    path: Assets/_Scenes/01A_Start.unity
+    guid: e703742fa8635d84cbc0dd31b67a4605
+  - enabled: 1
+    path: Assets/_Scenes/01B_Options.unity
+    guid: 100690f83c6df484682dcc7b21f95a05
+  - enabled: 1
+    path: Assets/_Scenes/M02_PlayerSelect.unity
+    guid: 38dab6b9bce27e6479211cf1c79ffa25
+  - enabled: 1
+    path: Assets/_Scenes/M03_LeveSelect.unity
+    guid: 5a0c4ae4753c26845927146def69086a
+  - enabled: 1
+    path: Assets/_Scenes/M04A_Entombed.unity
+    guid: 0bdecbe94ca880246b16288be9b8d52c
+  - enabled: 1
+    path: Assets/_Scenes/M04B_Entombed.unity
+    guid: 888c05bd6599a4d4497e33334f722b9f
+  - enabled: 1
+    path: Assets/_Scenes/M04C_Entombed.unity
+    guid: c3cb10adbe20b694ab7b029e1a47a138
+  - enabled: 1
+    path: Assets/_Scenes/M04D_Entombed.unity
+    guid: 496a9e8ba8ed6684cb82ea50e4f652e3
+  - enabled: 1
+    path: Assets/_Scenes/M04E_Entombed.unity
+    guid: 82adf67878d0f1f48acc93a5e3ce58af
+  - enabled: 1
+    path: Assets/_Scenes/M04F_Entombed.unity
+    guid: 1ea15672872f0ab4f89831f57486b5e2
+  - enabled: 1
+    path: Assets/_Scenes/M04G_Entombed.unity
+    guid: 1af3124970ee5c64c8cedd26a2648d4f
+  - enabled: 1
+    path: Assets/_Scenes/M04H_Entombed.unity
+    guid: 260354e638c21004a8c3c5fbc4c0dc85
+  - enabled: 1
+    path: Assets/_Scenes/M04I_Entombed.unity
+    guid: eeb9bd54126637d4dbd63990c30cab23
+  - enabled: 1
+    path: Assets/_Scenes/M04J_Entombed.unity
+    guid: 55a7f9550222ff5419663f60cd0cec16
+  - enabled: 1
+    path: Assets/_Scenes/05_Credits.unity
+    guid: 036ad167ca3b31d4c82b710bf58783cc
+  - enabled: 1
+    path: Assets/_Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  m_configObjects: {}
