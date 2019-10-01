@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AudioManagement.cs" />
     <Compile Include="Assets\Explosive.cs" />
     <Compile Include="Assets\RoundManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />

@@ -16,10 +16,6 @@ public class Explosive : MonoBehaviour
     [Header("How soon after the start of the match boxes will randomly explode.")]
     [Range(11, 120)]
     private float explosionFrequency;
-    [SerializeField]
-    [Header("Plays when the boxes go boom-boom")]
-    AudioClip clip;
-
     #endregion
 
     #region Start and Update
@@ -70,7 +66,6 @@ public class Explosive : MonoBehaviour
                     {
                         case "Player":
                             hit.collider.GetComponent<PlayerController>().TakeDamage(100);
-                            AudioSource.PlayClipAtPoint(clip, transform.position); 
                             break;
                         case "Breakable":
                             Destroy(hit.collider.gameObject);

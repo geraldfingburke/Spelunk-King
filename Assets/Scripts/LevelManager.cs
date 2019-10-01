@@ -16,18 +16,4 @@ public abstract class LevelManager
     {
         SceneManager.LoadScene(scene);
     }
-    // Gets the scene index and returns a string value for class. Used primarily to determine which background music should be played.
-    public static string SceneClass ()
-    {
-        switch(SceneManager.GetActiveScene().buildIndex)
-        {
-            case int n when n >= 1 && n <=4:
-                return "Menu";
-            case 5:
-                return "Level";
-
-            default: return "";
-        }
-        
-    }
 }
