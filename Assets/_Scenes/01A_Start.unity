@@ -735,7 +735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Multi-Player
+  m_Text: Credits
 --- !u!222 &1342857651
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 1446692934}
   - component: {fileID: 1446692933}
   m_Layer: 5
-  m_Name: Title (1)
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -905,6 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1597469594}
+  - component: {fileID: 1597469595}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -926,6 +927,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1597469595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597469593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf01535126fe0434194f33c89866f995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: 0
+  start: {fileID: 1446692933}
+  credits: {fileID: 1952422688}
+  options: {fileID: 1629434661}
 --- !u!1 &1629434659
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +955,7 @@ GameObject:
   - component: {fileID: 1629434662}
   - component: {fileID: 1629434661}
   m_Layer: 5
-  m_Name: Title (3)
+  m_Name: Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1194,7 +1211,7 @@ GameObject:
   - component: {fileID: 1952422689}
   - component: {fileID: 1952422688}
   m_Layer: 5
-  m_Name: Title (2)
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1473,7 +1490,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Multi-Player
+  m_Text: Credits
 --- !u!222 &1986659636
 CanvasRenderer:
   m_ObjectHideFlags: 0

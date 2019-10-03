@@ -25,9 +25,9 @@ public abstract class LevelManager
                 return "Splash";
             case int n when n >= 1 && n <= 4:
                 return "Menu";
-            case int n when n >= 5 && n <= 14:
+            case int n when n >= 5 && n <= 8:
                 return "Level";
-            case 15:
+            case 9:
                 return "Credits";
             default: return "";
         }

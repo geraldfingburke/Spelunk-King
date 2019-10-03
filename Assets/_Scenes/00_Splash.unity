@@ -187,6 +187,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 145819725664960314, guid: a691d5fba0769fd4d8c99ca5ed26eb4d,
+        type: 3}
+      propertyPath: levelMusic.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 145819725664960314, guid: a691d5fba0769fd4d8c99ca5ed26eb4d,
+        type: 3}
+      propertyPath: splashMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bc2965fbc5d45a43ae20566cee2e847, type: 3}
+    - target: {fileID: 145819725664960314, guid: a691d5fba0769fd4d8c99ca5ed26eb4d,
+        type: 3}
+      propertyPath: menuMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 59878e56005aec240b9396beaea26bc1, type: 3}
+    - target: {fileID: 145819725664960314, guid: a691d5fba0769fd4d8c99ca5ed26eb4d,
+        type: 3}
+      propertyPath: creditMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 59878e56005aec240b9396beaea26bc1, type: 3}
+    - target: {fileID: 145819725664960314, guid: a691d5fba0769fd4d8c99ca5ed26eb4d,
+        type: 3}
+      propertyPath: levelMusic.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fc09b96d0d26f74190fdc5f9a63a1b6, type: 3}
+    - target: {fileID: 145819725664960314, guid: a691d5fba0769fd4d8c99ca5ed26eb4d,
+        type: 3}
+      propertyPath: levelMusic.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bc2965fbc5d45a43ae20566cee2e847, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a691d5fba0769fd4d8c99ca5ed26eb4d, type: 3}
 --- !u!1 &1612180910

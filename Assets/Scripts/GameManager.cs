@@ -10,6 +10,11 @@ public abstract class GameManager : MonoBehaviour
     public static PlayerController player1;
     public static PlayerController player2;
 
+    public static string player1Selection;
+    public static string player2Selection;
+
+    public static string levelSelection;
+
     public static void ResetScores ()
     {
         player1Score = 0;
