@@ -9,7 +9,6 @@ public class MenuNavigation : MonoBehaviour
 
     public Image start;
     public Image credits;
-    public Image options;
 
     private bool vAxisInUse = false;
 
@@ -25,19 +24,12 @@ public class MenuNavigation : MonoBehaviour
         switch (position)
         {
             case 0:
-                start.color = new Color(1, 1, 1, 0.5f);
+                start.color = new Color(.75f, .75f, 1);
                 credits.color = Color.white;
-                options.color = Color.white;
                 break;
             case 1:
                 start.color = Color.white;
-                credits.color = new Color(1, 1, 1, 0.5f);
-                options.color = Color.white;
-                break;
-            case 2:
-                start.color = Color.white;
-                credits.color = Color.white;
-                options.color = new Color(1, 1, 1, 0.5f);
+                credits.color = new Color(.75f, .75f, 1);
                 break;
         }
         if (Input.GetButtonDown("PlayerOneShoot"))
@@ -54,7 +46,7 @@ public class MenuNavigation : MonoBehaviour
             position--;
             vAxisInUse = true;
         }
-        else if (Input.GetAxisRaw("PlayerOneVertical") < 0 && position < 2 && vAxisInUse == false)
+        else if (Input.GetAxisRaw("PlayerOneVertical") < 0 && position < 1 && vAxisInUse == false)
         {
             position++;
             vAxisInUse = true;
@@ -79,10 +71,6 @@ public class MenuNavigation : MonoBehaviour
             case 1:
                 selectedImage = credits;
                 selectedLevel = "05_Credits";
-                break;
-            case 2:
-                selectedImage = options;
-                selectedLevel = "01B_Options";
                 break;
         }
         selectedImage.color = Color.white;

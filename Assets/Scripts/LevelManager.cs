@@ -23,11 +23,11 @@ public abstract class LevelManager
         {
             case 0:
                 return "Splash";
-            case int n when n >= 1 && n <= 4:
+            case int n when n >= 1 && n <= 3:
                 return "Menu";
-            case int n when n >= 5 && n <= 8:
+            case int n when n >= 4 && n <= 7:
                 return "Level";
-            case 9:
+            case 8:
                 return "Credits";
             default: return "";
         }

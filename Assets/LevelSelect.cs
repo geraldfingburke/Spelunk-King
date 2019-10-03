@@ -22,6 +22,9 @@ public class LevelSelect : MonoBehaviour
     private bool p1hAxisInUse = false;
     private bool p2hAxisInUse = false;
 
+    private string p1SelectedLevel = "";
+    private string p2SelectedLevel = "";
+
     void Start()
     {
         InvokeRepeating("ListenForInput", .1f, .1f);
@@ -296,8 +299,7 @@ public class LevelSelect : MonoBehaviour
     public IEnumerator Selected(int player)
     {
         Image selectedImage = level1Image;
-        string p1SelectedLevel = "";
-        string p2SelectedLevel = "";
+
         if (player == 0)
         {
             switch (player1Pos.x)
@@ -383,7 +385,7 @@ public class LevelSelect : MonoBehaviour
         yield return new WaitForSeconds(.05f);
         selectedImage.color = new Color(0, 0, 0, .75f);
         yield return new WaitForSeconds(.05f);
-        if (p1HasChosen == true && p2HasChosen == true)
+        if (p1HasChosen && p2HasChosen)
         {
             if (p1SelectedLevel == p2SelectedLevel)
             {
