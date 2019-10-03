@@ -33,12 +33,13 @@ public class AudioManagement : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         SceneManager.sceneLoaded += this.OnLevelFinishedLoading;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
         currentSceneClass = LevelManager.SceneClass();
     }
 
