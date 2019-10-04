@@ -8,10 +8,17 @@ public class LevelSelect : MonoBehaviour
     public Vector2 player1Pos = new Vector2(0, 0);
     public Vector2 player2Pos = new Vector2(0, 0);
 
-    public Image level1Image;
-    public Image level2Image;
-    public Image level3Image;
-    public Image level4Image;
+    public Image p1Level1Image;
+    public Image p1Level2Image;
+    public Image p1Level3Image;
+    public Image p1Level4Image;
+
+    public Image p2Level1Image;
+    public Image p2Level2Image;
+    public Image p2Level3Image;
+    public Image p2Level4Image;
+
+    public AudioClip selectionClip;
 
     private bool p1HasChosen = false;
     private bool p2HasChosen = false;
@@ -22,6 +29,9 @@ public class LevelSelect : MonoBehaviour
     private bool p1hAxisInUse = false;
     private bool p2hAxisInUse = false;
 
+    private string p1SelectedLevel = "";
+    private string p2SelectedLevel = "";
+
     void Start()
     {
         InvokeRepeating("ListenForInput", .1f, .1f);
@@ -30,194 +40,79 @@ public class LevelSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1Pos != player2Pos)
+        switch (player1Pos.x)
         {
-            switch (player1Pos.x)
-            {
-                case 0:
-                    switch (player1Pos.y)
-                    {
-                        case 0:
-                            level1Image.color = Color.blue;
-                            if (player2Pos != new Vector2(0,1))
-                            {
-                                level2Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(1, 0))
-                            {
-                                level3Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(1, 1))
-                            {
-                                level4Image.color = Color.white;
-                            }
-                            break;
-                        case 1:
-                            level3Image.color = Color.blue;
-                            if (player2Pos != new Vector2(0, 0))
-                            {
-                                level1Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(1, 0))
-                            {
-                                level2Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(1, 1))
-                            {
-                                level4Image.color = Color.white;
-                            }
-                            break;
-                    }
-                    break;
-                case 1:
-                    switch (player1Pos.y)
-                    {
-                        case 0:
-                            level2Image.color = Color.blue;
-                            if (player2Pos != new Vector2(0, 0))
-                            {
-                                level1Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(0, 1))
-                            {
-                                level3Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(1, 1))
-                            {
-                                level4Image.color = Color.white;
-                            }
-                            break;
-                        case 1:
-                            level4Image.color = Color.blue;
-                            if (player2Pos != new Vector2(0, 0))
-                            {
-                                level1Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(1, 0))
-                            {
-                                level2Image.color = Color.white;
-                            }
-                            if (player2Pos != new Vector2(0, 1))
-                            {
-                                level3Image.color = Color.white;
-                            }
-                            break;
-                    }
-                    break;
-            }
-            switch (player2Pos.x)
-            {
-                case 0:
-                    switch (player2Pos.y)
-                    {
-                        case 0:
-                            level1Image.color = Color.red;
-                            if (player1Pos != new Vector2(1, 0))
-                            {
-                                level2Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(0, 1))
-                            {
-                                level3Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(1, 1))
-                            {
-                                level4Image.color = Color.white;
-                            }
-                            break;
-                        case 1:
-                            level3Image.color = Color.red;
-                            if (player1Pos != new Vector2(1, 0))
-                            {
-                                level2Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(0, 0))
-                            {
-                                level1Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(1, 1))
-                            {
-                                level4Image.color = Color.white;
-                            }
-                            break;
-                    }
-                    break;
-                case 1:
-                    switch (player2Pos.y)
-                    {
-                        case 0:
-                            level2Image.color = Color.red;
-                            if (player1Pos != new Vector2(0, 0))
-                            {
-                                level1Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(0, 1))
-                            {
-                                level3Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(1, 1))
-                            {
-                                level4Image.color = Color.white;
-                            }
-                            break;
-                        case 1:
-                            level4Image.color = Color.red;
-                            if (player1Pos != new Vector2(1, 0))
-                            {
-                                level2Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(0, 1))
-                            {
-                                level3Image.color = Color.white;
-                            }
-                            if (player1Pos != new Vector2(0, 0))
-                            {
-                                level1Image.color = Color.white;
-                            }
-                            break;
-                    }
-                    break;
-            }
+            case 0:
+                switch (player1Pos.y)
+                {
+                    case 0:
+                        p1Level1Image.gameObject.SetActive(true);
+                        p1Level2Image.gameObject.SetActive(false);
+                        p1Level3Image.gameObject.SetActive(false);
+                        p1Level4Image.gameObject.SetActive(false);
+                        break;
+                    case 1:
+                        p1Level1Image.gameObject.SetActive(false);
+                        p1Level2Image.gameObject.SetActive(false);
+                        p1Level3Image.gameObject.SetActive(true);
+                        p1Level4Image.gameObject.SetActive(false);
+                        break;
+                }
+                break;
+            case 1:
+                switch (player1Pos.y)
+                {
+                    case 0:
+                        p1Level1Image.gameObject.SetActive(false);
+                        p1Level2Image.gameObject.SetActive(true);
+                        p1Level3Image.gameObject.SetActive(false);
+                        p1Level4Image.gameObject.SetActive(false);
+                        break;
+                    case 1:
+                        p1Level1Image.gameObject.SetActive(false);
+                        p1Level2Image.gameObject.SetActive(false);
+                        p1Level3Image.gameObject.SetActive(false);
+                        p1Level4Image.gameObject.SetActive(true);
+                        break;
+                }
+                break;
         }
-        else
+        switch (player2Pos.x)
         {
-            switch (player1Pos.x)
-            {
-                case 0:
-                    switch(player1Pos.y)
-                    {
-                        case 0:
-                            level1Image.color = new Color(.75f, 0, 1);
-                            level2Image.color = Color.white;
-                            level3Image.color = Color.white;
-                            level4Image.color = Color.white;
-                            break;
-                        case 1:
-                            level3Image.color = new Color(.75f, 0, 1);
-                            level2Image.color = Color.white;
-                            level4Image.color = Color.white;
-                            level1Image.color = Color.white;
-                            break;
-                    }
-                    break;
-                case 1:
-                    switch(player1Pos.y)
-                    {
-                        case 0:
-                            level2Image.color = new Color(.75f, 0, 1);
-                            level3Image.color = Color.white;
-                            level4Image.color = Color.white;
-                            level1Image.color = Color.white;
-                            break;
-                        case 1:
-                            level4Image.color = new Color(.75f, 0, 1);
-                            level2Image.color = Color.white;
-                            level3Image.color = Color.white;
-                            level1Image.color = Color.white;
-                            break;
-                    }
-                    break;
-            }
+            case 0:
+                switch (player2Pos.y)
+                {
+                    case 0:
+                        p2Level1Image.gameObject.SetActive(true);
+                        p2Level2Image.gameObject.SetActive(false);
+                        p2Level3Image.gameObject.SetActive(false);
+                        p2Level4Image.gameObject.SetActive(false);
+                        break;
+                    case 1:
+                        p2Level1Image.gameObject.SetActive(false);
+                        p2Level2Image.gameObject.SetActive(false);
+                        p2Level3Image.gameObject.SetActive(true);
+                        p2Level4Image.gameObject.SetActive(false);
+                        break;
+                }
+                break;
+            case 1:
+                switch (player2Pos.y)
+                {
+                    case 0:
+                        p2Level1Image.gameObject.SetActive(false);
+                        p2Level2Image.gameObject.SetActive(true);
+                        p2Level3Image.gameObject.SetActive(false);
+                        p2Level4Image.gameObject.SetActive(false);
+                        break;
+                    case 1:
+                        p2Level1Image.gameObject.SetActive(false);
+                        p2Level2Image.gameObject.SetActive(false);
+                        p2Level3Image.gameObject.SetActive(false);
+                        p2Level4Image.gameObject.SetActive(true);
+                        break;
+                }
+                break;
         }
 
         if (Input.GetButtonDown("PlayerOneShoot"))
@@ -295,9 +190,8 @@ public class LevelSelect : MonoBehaviour
 
     public IEnumerator Selected(int player)
     {
-        Image selectedImage = level1Image;
-        string p1SelectedLevel = "";
-        string p2SelectedLevel = "";
+        Image selectedImage = p1Level1Image;
+
         if (player == 0)
         {
             switch (player1Pos.x)
@@ -308,12 +202,12 @@ public class LevelSelect : MonoBehaviour
                         case 0:
                             p1SelectedLevel = "04A_Level1";
                             p1HasChosen = true;
-                            selectedImage = level1Image;
+                            selectedImage = p1Level1Image;
                             break;
                         case 1:
                             p1SelectedLevel = "04C_Level3";
                             p1HasChosen = true;
-                            selectedImage = level3Image;
+                            selectedImage = p1Level3Image;
                             break;
                     }
                     break;
@@ -323,12 +217,12 @@ public class LevelSelect : MonoBehaviour
                         case 0:
                             p1SelectedLevel = "04B_Level2";
                             p1HasChosen = true;
-                            selectedImage = level2Image;
+                            selectedImage = p1Level2Image;
                             break;
                         case 1:
                             p1SelectedLevel = "04D_Level4";
                             p1HasChosen = true;
-                            selectedImage = level4Image;
+                            selectedImage = p1Level4Image;
                             break;
                     }
                     break;
@@ -344,12 +238,12 @@ public class LevelSelect : MonoBehaviour
                         case 0:
                             p2SelectedLevel = "04A_Level1";
                             p2HasChosen = true;
-                            selectedImage = level1Image;
+                            selectedImage = p2Level1Image;
                             break;
                         case 1:
                             p2SelectedLevel = "04C_Level3";
                             p2HasChosen = true;
-                            selectedImage = level3Image;
+                            selectedImage = p2Level3Image;
                             break;
                     }
                     break;
@@ -359,12 +253,12 @@ public class LevelSelect : MonoBehaviour
                         case 0:
                             p2SelectedLevel = "04B_Level2";
                             p2HasChosen = true;
-                            selectedImage = level2Image;
+                            selectedImage = p2Level2Image;
                             break;
                         case 1:
                             p2SelectedLevel = "04D_Level4";
                             p2HasChosen = true;
-                            selectedImage = level4Image;
+                            selectedImage = p2Level4Image;
                             break;
                     }
                     break;
@@ -383,7 +277,8 @@ public class LevelSelect : MonoBehaviour
         yield return new WaitForSeconds(.05f);
         selectedImage.color = new Color(0, 0, 0, .75f);
         yield return new WaitForSeconds(.05f);
-        if (p1HasChosen == true && p2HasChosen == true)
+        AudioSource.PlayClipAtPoint(selectionClip, transform.position);
+        if (p1HasChosen && p2HasChosen)
         {
             if (p1SelectedLevel == p2SelectedLevel)
             {

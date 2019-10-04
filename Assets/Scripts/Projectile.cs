@@ -32,12 +32,14 @@ public class Projectile : MonoBehaviour
                 AudioSource.PlayClipAtPoint(blockClip, col.transform.position);
                 break;
             case "Unbreakable":
+                Destroy(gameObject);
                 break;
             case "Player":
                 col.GetComponent<PlayerController>().TakeDamage(damage);
                 AudioSource.PlayClipAtPoint(playerClip, col.transform.position);
+                Destroy(gameObject);
                 break;
         }
-        Destroy(gameObject);
+        
     }
 }
