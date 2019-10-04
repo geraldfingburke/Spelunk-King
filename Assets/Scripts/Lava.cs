@@ -18,7 +18,7 @@ public class Lava : MonoBehaviour
         if (isFlowing)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -1f), Vector2.down, 0.05f);
-            if (hit.collider == null || hit.collider.CompareTag("Player"))
+            if (hit.collider == null || hit.collider.CompareTag("Player") || hit.collider.CompareTag("Ladder"))
             {
                 Instantiate(lava, transform.position + Vector3.down, Quaternion.identity);
             }

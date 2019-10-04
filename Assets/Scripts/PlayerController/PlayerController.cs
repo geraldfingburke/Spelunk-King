@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Header("Plays when the player shoots")]
     private AudioClip shootClip;
+    public bool canMove = true;
 
     [SerializeField] [Header("Plays when the player taunts")]
     private AudioClip tauntClip;
@@ -117,24 +118,27 @@ public class PlayerController : MonoBehaviour
 
         CheckLadder();
 
-        switch (playerNumber)
+        if (canMove)
         {
-            case 1:
-                HorizontalMoveListener("PlayerOneHorizontal");
-                VerticalMoveListener("PlayerOneVertical");
-                JumpListener("PlayerOneJump");
-                JumpJuice("PlayerOneJump");
-                ShootListener("PlayerOneShoot");
-                TauntListener("PlayerOneTaunt");
-                break;
-            case 2:
-                HorizontalMoveListener("PlayerTwoHorizontal");
-                VerticalMoveListener("PlayerTwoVertical");
-                JumpListener("PlayerTwoJump");
-                JumpJuice("PlayerTwoJump");
-                ShootListener("PlayerTwoShoot");
-                TauntListener("PlayerTwoTaunt");
-                break;
+            switch (playerNumber)
+            {
+                case 1:
+                    HorizontalMoveListener("PlayerOneHorizontal");
+                    VerticalMoveListener("PlayerOneVertical");
+                    JumpListener("PlayerOneJump");
+                    JumpJuice("PlayerOneJump");
+                    ShootListener("PlayerOneShoot");
+                    TauntListener("PlayerOneTaunt");
+                    break;
+                case 2:
+                    HorizontalMoveListener("PlayerTwoHorizontal");
+                    VerticalMoveListener("PlayerTwoVertical");
+                    JumpListener("PlayerTwoJump");
+                    JumpJuice("PlayerTwoJump");
+                    ShootListener("PlayerTwoShoot");
+                    TauntListener("PlayerTwoTaunt");
+                    break;
+            } 
         }
     }
     #endregion
@@ -318,6 +322,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Die()
     {
+        canMove = false;
         bool roundOver = false;
         while (health > 0)
         {
@@ -346,7 +351,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.ResetScores();
             yield return new WaitForEndOfFrame();
-            LevelManager.Reload();
+            LevelManager.Load("01A_Start");
         }
         else
         {
