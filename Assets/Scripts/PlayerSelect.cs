@@ -8,8 +8,10 @@ public class PlayerSelect : MonoBehaviour
     public int player1Pos = 0;
     public int player2Pos = 0;
 
-    public Image aliceImage;
-    public Image checkovImage;
+    public Image p1AliceImage;
+    public Image p1CheckovImage;
+    public Image p2AliceImage;
+    public Image p2CheckovImage;
 
     private bool p1HasChosen = false;
     private bool p2HasChosen = false;
@@ -26,42 +28,27 @@ public class PlayerSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1Pos != player2Pos)
+        switch (player1Pos)
         {
-            switch (player1Pos)
-            {
-                case 0:
-                    aliceImage.color = new Color(0,0,1);
-                    
-                    break;
-                case 1:
-                    checkovImage.color = new Color(0, 0, 1);
-                    
-                    break;
-            }
-            switch (player2Pos)
-            {
-                case 0:
-                    aliceImage.color = new Color(1, 0, 0);
-                    break;
-                case 1:
-                    checkovImage.color = new Color(1, 0, 0);
-                    break;
-            }
+            case 0:
+                p1AliceImage.gameObject.SetActive(true);
+                p1CheckovImage.gameObject.SetActive(false);
+                break;
+            case 1:
+                p1AliceImage.gameObject.SetActive(false);
+                p1CheckovImage.gameObject.SetActive(true);
+                break;
         }
-        else
+        switch (player2Pos)
         {
-            switch (player1Pos)
-            {
-                case 0:
-                    aliceImage.color = new Color(.75f,0,1);
-                    checkovImage.color = Color.white;
-                    break;
-                case 1:
-                    checkovImage.color = new Color(.75f,0,1f);
-                    aliceImage.color = Color.white;
-                    break;
-            }
+            case 0:
+                p2AliceImage.gameObject.SetActive(true);
+                p2CheckovImage.gameObject.SetActive(false);
+                break;
+            case 1:
+                p2AliceImage.gameObject.SetActive(false);
+                p2CheckovImage.gameObject.SetActive(true);
+                break;
         }
 
         if (Input.GetButtonDown("PlayerOneShoot"))
@@ -110,18 +97,18 @@ public class PlayerSelect : MonoBehaviour
 
     public IEnumerator Selected(int player)
     {
-        Image selectedImage = aliceImage;
+        Image selectedImage = p1AliceImage;
         if (player == 0)
         {
             switch (player1Pos)
             {
                 case 0:
-                    selectedImage = aliceImage;
+                    selectedImage = p1AliceImage;
                     p1HasChosen = true;
                     GameManager.player1Selection = "alice";
                     break;
                 case 1:
-                    selectedImage = checkovImage;
+                    selectedImage = p1CheckovImage;
                     p1HasChosen = true;
                     GameManager.player1Selection = "checkov";
                     break;
@@ -132,12 +119,12 @@ public class PlayerSelect : MonoBehaviour
             switch (player2Pos)
             {
                 case 0:
-                    selectedImage = aliceImage;
+                    selectedImage = p2AliceImage;
                     p2HasChosen = true;
                     GameManager.player2Selection = "alice";
                     break;
                 case 1:
-                    selectedImage = checkovImage;
+                    selectedImage = p2CheckovImage;
                     p2HasChosen = true;
                     GameManager.player2Selection = "checkov";
                     break;

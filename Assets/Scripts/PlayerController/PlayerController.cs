@@ -322,16 +322,17 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Die()
     {
-        canMove = false;
+        
         bool roundOver = false;
         while (health > 0)
         {
             yield return null;
         }
         animator.SetBool("isDead", true);
+        canMove = false;
         AudioSource.PlayClipAtPoint(deathClip, transform.position);
         yield return new WaitForSeconds(1);
-        if (GameManager.player1Score < 3 && GameManager.player2Score < 3)
+        if (GameManager.player1Score < 2 && GameManager.player2Score < 2)
         {
             switch (playerNumber)
             {
