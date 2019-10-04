@@ -13,6 +13,8 @@ public class PlayerSelect : MonoBehaviour
     public Image p2AliceImage;
     public Image p2CheckovImage;
 
+    public AudioClip selectionClip;
+
     private bool p1HasChosen = false;
     private bool p2HasChosen = false;
 
@@ -143,6 +145,7 @@ public class PlayerSelect : MonoBehaviour
         yield return new WaitForSeconds(.05f);
         selectedImage.color = new Color(0, 0, 0, .75f);
         yield return new WaitForSeconds(.05f);
+        AudioSource.PlayClipAtPoint(selectionClip, transform.position);
         if (p1HasChosen == true && p2HasChosen == true)
         {
             LevelManager.Load("M03_LevelSelect");

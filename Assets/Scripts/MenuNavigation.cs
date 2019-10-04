@@ -10,6 +10,8 @@ public class MenuNavigation : MonoBehaviour
     public Image start;
     public Image credits;
 
+    public AudioClip selectionClip;
+
     private bool vAxisInUse = false;
 
     // Start is called before the first frame update
@@ -86,5 +88,6 @@ public class MenuNavigation : MonoBehaviour
         selectedImage.color = new Color(0, 0, 0, .75f);
         yield return new WaitForSeconds(.05f);
         LevelManager.Load(selectedLevel);
+        AudioSource.PlayClipAtPoint(selectionClip, transform.position);
     }
 }
