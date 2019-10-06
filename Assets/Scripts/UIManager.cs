@@ -32,8 +32,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        player1Score.text = player1.name + ": " + GameManager.player1Score;
-        player2Score.text = player2.name + ": " + GameManager.player2Score;
+        player1Score.text = player1.GetName() + ": " + GameManager.player1Score;
+        player2Score.text = player2.GetName() + ": " + GameManager.player2Score;
 
     }
 }

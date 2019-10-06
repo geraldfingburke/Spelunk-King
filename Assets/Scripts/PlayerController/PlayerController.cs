@@ -5,6 +5,7 @@ using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public enum Facing
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     #region Player Properties
     [SerializeField]
     [Header("Name used in UI")]
-    private string name;
+    private string playerName;
     [SerializeField]
     [Header("Player Health")]
     [Range(10, 100)]
@@ -72,10 +73,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Header("Plays when the player shoots")]
     private AudioClip shootClip;
+    [SerializeField]
+    [Header("Plays when the AliceWins")]
+    private AudioClip aliceWinsClip;
+    [SerializeField]
+    [Header("Plays when Checkov wins")]
+    private AudioClip checkovWinsClip;
     public bool canMove = true;
 
     [SerializeField] [Header("Plays when the player taunts")]
     private AudioClip tauntClip;
+
+    private Image victoryImage;
+
+    private Text victoryText;
 
     private bool isOnLadder;
     private bool canMoveDown;
@@ -89,6 +100,12 @@ public class PlayerController : MonoBehaviour
 
     #region Start and Update
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        victoryImage = FindObjectOfType<VictoryImage>().gameObject.GetComponent<Image>();
+    }
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -96,6 +113,35 @@ public class PlayerController : MonoBehaviour
         InvokeRepeating("CheckGround", 0.5f, 0.2f);
         StartCoroutine("Die");
         Debug.Log("Player 1: " + GameManager.player1Score + " Player 2: " + GameManager.player2Score);
+        victoryText = victoryImage.gameObject.GetComponentInChildren<Text>();
+        victoryImage.gameObject.SetActive(false);
+        switch (playerNumber)
+        {
+            case 1:
+                switch (GameManager.player1Selection)
+                {
+                    case "alice":
+                        playerName = "Alice";
+                        break;
+                    case "checkov":
+                        playerName = "Checkov";
+                        break;
+                }
+
+                break;
+            case 2:
+                switch (GameManager.player2Selection)
+                {
+                    case "alice":
+                        playerName = "Alice";
+                        break;
+                    case "checkov":
+                        playerName = "Checkov";
+                        break;
+                }
+
+                break;
+        }
         target = GameManager.player1;
         if (isAI)
         {
@@ -106,7 +152,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(victoryText);
         if (isOnLadder)
         {
             rigidbody.gravityScale = 0;
@@ -261,8 +307,8 @@ public class PlayerController : MonoBehaviour
 
     public void CheckLadder()
     {
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position + new Vector3(0, 0.9f), Vector2.up, 0.5f);
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.9f), Vector2.down, 0.5f);
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position + new Vector3(0, 0.9f), Vector2.up, 0.1f);
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.9f), Vector2.down, 0.1f);
 
         if (hitUp.collider != null)
         {
@@ -350,8 +396,33 @@ public class PlayerController : MonoBehaviour
         }
         if (roundOver)
         {
+            victoryImage.gameObject.SetActive(true);
+            if (GameManager.player1Score > GameManager.player2Score)
+            {
+                victoryText.text = GameManager.player1.GetName() + " wins!";
+                if (GameManager.player1Selection == "alice")
+                {
+                    AudioSource.PlayClipAtPoint(aliceWinsClip, transform.position);
+                }
+                else
+                {
+                    AudioSource.PlayClipAtPoint(checkovWinsClip, transform.position);
+                }
+            }
+            else if (GameManager.player2Score > GameManager.player1Score)
+            {
+                victoryText.text = GameManager.player2.GetName() + " wins!";
+                if (GameManager.player2Selection == "alice")
+                {
+                    AudioSource.PlayClipAtPoint(aliceWinsClip, transform.position);
+                }
+                else
+                {
+                    AudioSource.PlayClipAtPoint(checkovWinsClip, transform.position);
+                }
+            }
             GameManager.ResetScores();
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(2);
             LevelManager.Load("01A_Start");
         }
         else
@@ -470,7 +541,7 @@ public class PlayerController : MonoBehaviour
 
     public string GetName ()
     {
-        return name;
+        return playerName;
     }
 
     public int GetPlayerNumber()

@@ -17,8 +17,10 @@ public class Explosive : MonoBehaviour
     [Range(11, 120)]
     private float explosionFrequency;
     [SerializeField]
-    [Header("Plays when the boxes go boom-boom")]
-    AudioClip clip;
+    [Header("Clip that plays when box goes boom")]
+    private AudioClip explosionClip;
+
+    //private AudioSource audioSource;
 
     #endregion
 
@@ -26,6 +28,7 @@ public class Explosive : MonoBehaviour
     public void Start()
     {
         countDown = Random.Range(10, explosionFrequency);
+        //audioSource = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -50,6 +53,9 @@ public class Explosive : MonoBehaviour
     public void Explode()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
+        //audioSource.Play();
+        AudioSource.PlayClipAtPoint(explosionClip,transform.position);
+
         for (int i = 0; i < 5; i++)
         {
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
@@ -70,7 +76,6 @@ public class Explosive : MonoBehaviour
                     {
                         case "Player":
                             hit.collider.GetComponent<PlayerController>().TakeDamage(100);
-                            AudioSource.PlayClipAtPoint(clip, transform.position); 
                             break;
                         case "Breakable":
                             Destroy(hit.collider.gameObject);

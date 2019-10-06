@@ -140,3 +140,4 @@ MonoBehaviour:
   explosion: {fileID: 5217195787689880441, guid: 10b178ddb69c917438822ff4e9c28aaf,
     type: 3}
   explosionFrequency: 27.2
+  explosionClip: {fileID: 8300000, guid: 3b876515ed10cec4ba3499c6171856b4, type: 3}
