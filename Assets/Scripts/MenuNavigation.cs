@@ -13,11 +13,13 @@ public class MenuNavigation : MonoBehaviour
     public AudioClip selectionClip;
 
     private bool vAxisInUse = false;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("ListenForInput", .1f, .1f);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,8 @@ public class MenuNavigation : MonoBehaviour
         {
             StartCoroutine("Selected");
         }
+
+        Debug.Log(Input.GetAxis("PlayerOneHorizontal") + " : " + Input.GetAxis("PlayerOneVertical"));
     }
 
     public void ListenForInput ()
@@ -75,6 +79,7 @@ public class MenuNavigation : MonoBehaviour
                 selectedLevel = "05_Credits";
                 break;
         }
+        audioSource.Play();
         selectedImage.color = Color.white;
         yield return new WaitForSeconds(.05f);
         selectedImage.color = new Color(0,0,0,.75f);
@@ -88,6 +93,8 @@ public class MenuNavigation : MonoBehaviour
         selectedImage.color = new Color(0, 0, 0, .75f);
         yield return new WaitForSeconds(.05f);
         LevelManager.Load(selectedLevel);
-        AudioSource.PlayClipAtPoint(selectionClip, transform.position);
+
     }
+    
+    
 }

@@ -163,13 +163,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Checkov
-  health: 10
+  health: 15
   damage: 5
-  moveSpeed: 10
-  jumpHeight: 375
-  fallMultiplier: 6
-  lowJumpMultiplier: 4
-  fireRate: 5
+  moveSpeed: 7
+  jumpHeight: 275
+  fallMultiplier: 8
+  lowJumpMultiplier: 3
+  fireRate: 4
   slide: 2
   playerNumber: 2
   isAI: 0
@@ -180,4 +180,7 @@ MonoBehaviour:
   lavaClip: {fileID: 8300000, guid: 8b2890bc06466ff44bb60c1da8d8f9a0, type: 3}
   jumpClip: {fileID: 8300000, guid: c70e4e0ae051cd64cb96eb22b00fda7f, type: 3}
   shootClip: {fileID: 8300000, guid: f9dd473d01544734c8fcb3ea7f1c336f, type: 3}
+  aliceWinsClip: {fileID: 8300000, guid: 51f7adae2ab69cd43abbe274b76d655e, type: 3}
+  checkovWinsClip: {fileID: 8300000, guid: 54021d2b776b44b4eaeb4b893e00b947, type: 3}
+  canMove: 1
   tauntClip: {fileID: 8300000, guid: 282c99e3302b918419daee59f9d5a9a9, type: 3}

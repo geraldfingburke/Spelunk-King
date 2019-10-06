@@ -7,15 +7,19 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="LevelSelect.cs" t="Include" />
+        <e p="PlayerSpawner.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AudioManagement.cs" t="Include" />
           <e p="Explosive.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Lava.cs" t="Include" />
           <e p="LevelManager.cs" t="Include" />
+          <e p="MenuNavigation.cs" t="Include" />
           <e p="PlayerController" t="Include">
             <e p="PlayerController.cs" t="Include" />
           </e>
+          <e p="PlayerSelect.cs" t="Include" />
           <e p="Projectile.cs" t="Include" />
           <e p="RoundManager.cs" t="Include" />
           <e p="SplashScreen.cs" t="Include" />
@@ -151,6 +155,7 @@
             </e>
           </e>
         </e>
+        <e p="VictoryImage.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />

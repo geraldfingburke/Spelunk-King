@@ -13,7 +13,8 @@ public class PlayerSelect : MonoBehaviour
     public Image p2AliceImage;
     public Image p2CheckovImage;
 
-    public AudioClip selectionClip;
+    public AudioClip aliceClip;
+    public AudioClip checkovClip;
 
     private bool p1HasChosen = false;
     private bool p2HasChosen = false;
@@ -21,10 +22,13 @@ public class PlayerSelect : MonoBehaviour
     private bool p1vAxisInUse = false;
     private bool p2vAxisInUse = false;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("ListenForInput", .1f, .1f);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -108,11 +112,13 @@ public class PlayerSelect : MonoBehaviour
                     selectedImage = p1AliceImage;
                     p1HasChosen = true;
                     GameManager.player1Selection = "alice";
+                    audioSource.clip = aliceClip;
                     break;
                 case 1:
                     selectedImage = p1CheckovImage;
                     p1HasChosen = true;
                     GameManager.player1Selection = "checkov";
+                    audioSource.clip = checkovClip;
                     break;
             }
         }
@@ -124,15 +130,18 @@ public class PlayerSelect : MonoBehaviour
                     selectedImage = p2AliceImage;
                     p2HasChosen = true;
                     GameManager.player2Selection = "alice";
+                    audioSource.clip = aliceClip;
                     break;
                 case 1:
                     selectedImage = p2CheckovImage;
                     p2HasChosen = true;
                     GameManager.player2Selection = "checkov";
+                    audioSource.clip = checkovClip;
                     break;
             }
         }
-        
+        audioSource.Play();
+
         selectedImage.color = Color.white;
         yield return new WaitForSeconds(.05f);
         selectedImage.color = new Color(0, 0, 0, .75f);
@@ -144,8 +153,7 @@ public class PlayerSelect : MonoBehaviour
         selectedImage.color = Color.white;
         yield return new WaitForSeconds(.05f);
         selectedImage.color = new Color(0, 0, 0, .75f);
-        yield return new WaitForSeconds(.05f);
-        AudioSource.PlayClipAtPoint(selectionClip, transform.position);
+        yield return new WaitForSeconds(1f);
         if (p1HasChosen == true && p2HasChosen == true)
         {
             LevelManager.Load("M03_LevelSelect");
