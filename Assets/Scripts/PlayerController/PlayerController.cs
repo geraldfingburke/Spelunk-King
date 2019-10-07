@@ -104,10 +104,13 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         victoryImage = FindObjectOfType<VictoryImage>().gameObject.GetComponent<Image>();
+        
     }
 
     void Start()
     {
+        Debug.Log(GameManager.player1Score + " : " + GameManager.player2Score);
+        
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         InvokeRepeating("CheckGround", 0.5f, 0.2f);
@@ -146,6 +149,10 @@ public class PlayerController : MonoBehaviour
         if (isAI)
         {
             StartCoroutine("AIRoutine");
+        }
+        if (GameManager.player1Score == 3 || GameManager.player2Score == 3)
+        {
+            StartCoroutine("EndRound");
         }
     }
 
@@ -369,7 +376,6 @@ public class PlayerController : MonoBehaviour
     public IEnumerator Die()
     {
         
-        bool roundOver = false;
         while (health > 0)
         {
             yield return null;
@@ -378,57 +384,18 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         AudioSource.PlayClipAtPoint(deathClip, transform.position);
         yield return new WaitForSeconds(1);
-        if (GameManager.player1Score < 2 && GameManager.player2Score < 2)
+        switch (playerNumber)
         {
-            switch (playerNumber)
-            {
-                case 1:
-                    GameManager.player2Score++;
-                    break;
-                case 2:
-                    GameManager.player1Score++;
-                    break;
-            }
-        } 
-        else
-        {
-            roundOver = true;
+            case 1:
+                GameManager.player2Score++;
+                break;
+            case 2:
+                GameManager.player1Score++;
+                break;
         }
-        if (roundOver)
-        {
-            victoryImage.gameObject.SetActive(true);
-            if (GameManager.player1Score > GameManager.player2Score)
-            {
-                victoryText.text = GameManager.player1.GetName() + " wins!";
-                if (GameManager.player1Selection == "alice")
-                {
-                    AudioSource.PlayClipAtPoint(aliceWinsClip, transform.position);
-                }
-                else
-                {
-                    AudioSource.PlayClipAtPoint(checkovWinsClip, transform.position);
-                }
-            }
-            else if (GameManager.player2Score > GameManager.player1Score)
-            {
-                victoryText.text = GameManager.player2.GetName() + " wins!";
-                if (GameManager.player2Selection == "alice")
-                {
-                    AudioSource.PlayClipAtPoint(aliceWinsClip, transform.position);
-                }
-                else
-                {
-                    AudioSource.PlayClipAtPoint(checkovWinsClip, transform.position);
-                }
-            }
-            GameManager.ResetScores();
-            yield return new WaitForSeconds(2);
-            LevelManager.Load("01A_Start");
-        }
-        else
-        {
-            LevelManager.Reload();
-        }
+        yield return new WaitForSeconds(.1f);
+        LevelManager.Reload();
+
     }
 
     public void Shoot()
@@ -469,7 +436,40 @@ public class PlayerController : MonoBehaviour
             transform.position += Vector3.up * moveSpeed * Time.deltaTime;
         }
     }
-
+    public IEnumerator EndRound()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(.1f);
+        victoryImage.gameObject.SetActive(true);
+        if (GameManager.player1Score > GameManager.player2Score)
+        {
+            victoryText.text = GameManager.player1.GetName() + " wins!";
+            if (GameManager.player1Selection == "alice")
+            {
+                AudioSource.PlayClipAtPoint(aliceWinsClip, transform.position);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(checkovWinsClip, transform.position);
+            }
+        }
+        else if (GameManager.player2Score > GameManager.player1Score)
+        {
+            victoryText.text = GameManager.player2.GetName() + " wins!";
+            if (GameManager.player2Selection == "alice")
+            {
+                AudioSource.PlayClipAtPoint(aliceWinsClip, transform.position);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(checkovWinsClip, transform.position);
+            }
+        }
+        yield return new WaitForSeconds(.1f);
+        GameManager.ResetScores();
+        yield return new WaitForSeconds(2);
+        LevelManager.Load("01A_Start");
+    }
     public void MoveDown()
     {
         Debug.Log(canMoveDown);
