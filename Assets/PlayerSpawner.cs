@@ -10,8 +10,7 @@ public class PlayerSpawner : MonoBehaviour
     public PlayerController alice;
     public PlayerController checkov;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         switch (GameManager.player1Selection)
         {
